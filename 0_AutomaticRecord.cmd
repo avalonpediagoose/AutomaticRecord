@@ -1,0 +1,2 @@
+python AutomaticRecord.py
+pause
