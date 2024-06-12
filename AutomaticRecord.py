@@ -37,6 +37,7 @@ class APFrame(AP_GUI.MyFrame):
         nowRecord = datetime.datetime.now()
         timestamp = nowRecord.strftime('_%m%d_%H%M%S')
         path = timestamp+'_AutoRecord.txt'
+        screenpath = timestamp+'_screen.png'
         
         ll = self.textc_ActualCombat.GetValue()
         lake_lady = [i for i in ll]
@@ -57,10 +58,15 @@ class APFrame(AP_GUI.MyFrame):
         print("請自行點擊需要的房間")
         self.stext_WaitSel.SetLabel("請自行點擊需要的房間")
         time.sleep(int(self.textc_DelaySel.GetValue()))
+        
+        # 在進入房間後保存螢幕截圖
+        screenshot_filename = screenpath
+        driver.save_screenshot(screenshot_filename)
+        
         btn = driver.find_element(By.CSS_SELECTOR, 'button[data-toggle="modal"].btn.btn-primary')
         btn.click()
         time.sleep(3)        
-        
+              
         #定義變數
         i = 0
         a = 0
@@ -74,11 +80,7 @@ class APFrame(AP_GUI.MyFrame):
         #遊戲玩家
         p = driver.find_elements(By.CSS_SELECTOR,"[align=center]")
         for player in p:
-            player_list.append(player.text)
-            
-        # 在進入房間後保存螢幕截圖
-        screenshot_filename = f"screenshot_round_{round_number}.png"
-        driver.save_screenshot(screenshot_filename)
+            player_list.append(player.text)                    
             
         # 打開文件以寫入模式
         with open(path, "w", encoding = "utf-8") as file:
