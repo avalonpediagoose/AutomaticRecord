@@ -1,5 +1,8 @@
 # AutomaticRecord
-牌譜自動產生器  
+牌譜自動產生器 
+
+[Step 0] https://avalon.signage-cloud.org/  
+需要有一個打完遊戲的房間
 
 [Step 1] https://googlechromelabs.github.io/chrome-for-testing/  
 說明:  
